@@ -1,0 +1,54 @@
+form {
+    display: block;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid;
+    padding: 1em;
+    height: 70%;
+    margin-top: calc(50vh - 40vh);
+    
+}
+
+div.appCreate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    padding-top: calc(50vh - 70%);
+}
+
+select {
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 60px;
+}
+
+span {
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+input {
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: green;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
