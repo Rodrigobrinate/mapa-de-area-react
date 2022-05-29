@@ -1,19 +1,22 @@
 import './styles/Create.css'
-import React from 'react';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import React,{ useState, useEffect,useRef } from 'react';
 import { Link} from 'react-router-dom';
 import Header from '../components/Header';
+import { Editor } from '@tinymce/tinymce-react';
 import api from "../components/api";
-
 
 function Create() {
     const [colaborator, setColaborator] = useState([])
     const [city, setCity] = useState([])
     const [msg, setMsg] = useState('')
     
-console.log('teste')
 
+const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+    }
+  };
 
 
 if (localStorage.getItem('token') === null) {
@@ -31,6 +34,7 @@ if (localStorage.getItem('token') === null) {
     }, []);
 
     function create(item){
+        console.log('teste')
         const headers = {
             headers: {
             'Content-Type': 'application/json',
@@ -39,11 +43,11 @@ if (localStorage.getItem('token') === null) {
         }
 
 
-        api.post("/create",{
-            colaborator: document.getElementById('colaborator').value,
+        api.post("/createMassive",{
+            
             city: document.getElementById('city').value,
-            period: document.getElementById('period').value,
-            date: document.getElementById('date').value,
+            returndate: document.getElementById('return_date').value,
+            date: document.getElementById('init_date').value,
             type: document.getElementById('type').value,
         },headers).then((response) => {
             if(response.date.auth === false){
@@ -62,31 +66,43 @@ if (localStorage.getItem('token') === null) {
         <Header />
         <Link className='btn btn-add' to="/"> visualizar</Link>
      <form >
+
+    
+     <Editor
+        tinymceScriptSrc={process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'}
+        onInit={(evt, editor) => editorRef.current = editor}
+        initialValue='<p>This is the initial content of the editor.</p>'
+        init={{
+          height: 500,
+          menubar: false,
+          plugins: [
+            'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+            'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+            'insertdatetime', 'media', 'table', 'preview', 'help', 'wordcount'
+          ],
+          toolbar: 'undo redo | blocks | ' +
+            'bold italic forecolor | alignleft aligncenter ' +
+            'alignright alignjustify | bullist numlist outdent indent | ' +
+            'removeformat | help',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        }}
+      />
          <span>cidade</span>
          <select id="city">
             <option>selecione a cidade</option>
             {city.map((item)=> <option value={item.id}>{item.name}</option>)}
             
          </select  >
-         <span>Técnico</span>
-         <select id="colaborator">
-            <option>selecione o tecnioc</option>
-            {colaborator.map((item)=> <option value={item.id}>{item.name}</option>)}
+         
+         <select id="type">
+            <option>selecione o tipo de massiva</option>
+             <option value="queda">queda</option>
          </select>
-         <span>período</span>
-         <select id='period'>
-            <option>selecione o período</option>
-            <option value={"08:00 as 18:00"}>dia</option>
-            <option value={"13:00 as 21:00"}>noite</option>
-         </select>
-         <span>tipo de serviço</span>
-         <select id='type'>
-            <option>selecione o tipo de serviço</option>
-            <option value={"Instalação"}>Instalação</option>
-            <option value={"manutenção"}>manutanção</option>
-         </select>
-            <span>data</span>
-            <input id='date' type="date" />
+         
+            <span>data de inico</span>
+            <input id='init_date' type="date" />
+            <span>previsão de conclusão</span>
+            <input id='return_date' type="date" />
             <button type='button' onClick={create} className="submit" >cadastrar</button>
          
      </form>

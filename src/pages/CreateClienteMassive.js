@@ -1,18 +1,16 @@
 import './styles/Create.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+
 import { Link} from 'react-router-dom';
 import Header from '../components/Header';
 import api from "../components/api";
 
-
-function Create() {
+function CreateClienteMassive() {
     const [colaborator, setColaborator] = useState([])
     const [city, setCity] = useState([])
     const [msg, setMsg] = useState('')
-    
-console.log('teste')
+   
 
 
 
@@ -31,6 +29,7 @@ if (localStorage.getItem('token') === null) {
     }, []);
 
     function create(item){
+        console.log('teste')
         const headers = {
             headers: {
             'Content-Type': 'application/json',
@@ -39,11 +38,11 @@ if (localStorage.getItem('token') === null) {
         }
 
 
-        api.post("/create",{
-            colaborator: document.getElementById('colaborator').value,
+        api.post("/createMassiveCliet",{
+            
             city: document.getElementById('city').value,
-            period: document.getElementById('period').value,
-            date: document.getElementById('date').value,
+            returndate: document.getElementById('return_date').value,
+            date: document.getElementById('init_date').value,
             type: document.getElementById('type').value,
         },headers).then((response) => {
             if(response.date.auth === false){
@@ -62,31 +61,18 @@ if (localStorage.getItem('token') === null) {
         <Header />
         <Link className='btn btn-add' to="/"> visualizar</Link>
      <form >
-         <span>cidade</span>
+         <span>Massiva</span>
          <select id="city">
-            <option>selecione a cidade</option>
+            <option>selecione a massiva</option>
             {city.map((item)=> <option value={item.id}>{item.name}</option>)}
             
          </select  >
-         <span>Técnico</span>
-         <select id="colaborator">
-            <option>selecione o tecnioc</option>
-            {colaborator.map((item)=> <option value={item.id}>{item.name}</option>)}
-         </select>
-         <span>período</span>
-         <select id='period'>
-            <option>selecione o período</option>
-            <option value={"08:00 as 18:00"}>dia</option>
-            <option value={"13:00 as 21:00"}>noite</option>
-         </select>
-         <span>tipo de serviço</span>
-         <select id='type'>
-            <option>selecione o tipo de serviço</option>
-            <option value={"Instalação"}>Instalação</option>
-            <option value={"manutenção"}>manutanção</option>
-         </select>
-            <span>data</span>
-            <input id='date' type="date" />
+         <span>Nome</span>
+         <input type="text" id="name" placeholder="digite o nome do cliente" />
+         <span>Problema</span>
+         <input type="text" id="name" placeholder="digite o problema do cliente" />
+         
+            
             <button type='button' onClick={create} className="submit" >cadastrar</button>
          
      </form>
@@ -94,4 +80,4 @@ if (localStorage.getItem('token') === null) {
   );
 }
 
-export default Create;
+export default CreateClienteMassive;

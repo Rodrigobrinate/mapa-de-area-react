@@ -1,0 +1,18 @@
+.card {
+    border: 1px solid;
+    padding: 10px;
+    margin-left: 10px;
+    margin-top: 10px; 
+}
+
+.card-title {
+    display: inline;
+    width: max-content;
+    margin-left: 10px;
+}
+
+.card-subtitle {
+    display: inline;
+    width: max-content;
+    margin-left: 10px;
+}

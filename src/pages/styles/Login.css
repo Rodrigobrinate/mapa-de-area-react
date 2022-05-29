@@ -1,0 +1,10 @@
+input, select {
+    display: block;
+    width: 80% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+select {
+    margin-top: 10px;
+}

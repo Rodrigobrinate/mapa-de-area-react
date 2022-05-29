@@ -39,5 +39,14 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="https://cdn.tiny.cloud/1/8f8u1h418zh7obtndtckfikqb4z9yselmp1x2cpf9lltnpzx/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script> 
+      tinymce.init({ 
+        selector: 'textarea#default-editor',
+        
+      }); 
+    </script>
+    <script src="/path/or/uri/to/tinymce.min.js" referrerpolicy="origin"></script>
   </body>
 </html>

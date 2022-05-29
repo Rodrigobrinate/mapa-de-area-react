@@ -1,5 +1,5 @@
 .App {
-
+ width: 100%;
 }
 
 li {
@@ -10,8 +10,10 @@ li {
 ul {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 100vw;
   flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
   
   
 }
@@ -40,9 +42,9 @@ p{
 }
 
 input.date {
-  display: block;
-  width: max-content;
-  margin-left: 10%;
+  display: block ;
+  width: 20vw !important;
+  margin-left: 10% !important;
   padding: 10px 20px;
    margin-right: 0px; 
   margin-top: 10px;
@@ -50,4 +52,19 @@ input.date {
 
 .name {
   margin-left: 5px;
+}
+
+.btn { 
+  width: max-content; 
+  padding: 10px 20px;
+  border: none;
+}
+
+.btn-add {
+  float: right;
+  margin-right: 10%;
+  border-radius: 5px; 
+  background-color: rgb(0, 255, 200);
+  text-decoration: none;
+  color: black;
 }

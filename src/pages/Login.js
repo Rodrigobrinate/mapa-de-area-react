@@ -2,12 +2,10 @@ import './styles/Login.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import api from "../components/api";
 
 function Login() {
-    const api = axios.create({
-        baseURL: "http://187.94.218.212:6868",
-        //baseURL: "http://localhost:3001"
-      });
+    
     
     function login(item){
         api.post("/login",{
@@ -15,6 +13,7 @@ function Login() {
             password: document.getElementById('password').value,
         }).then((response) => {
             localStorage.setItem('token', response.data.token)
+            localStorage.setItem('name', response.data.name)
            
             return window.location.href = '/create'
         })
@@ -28,7 +27,7 @@ function Login() {
             <input type="text" id="email" />
             <span>Senha</span>
             <input type="password" id="password" />
-            <button onClick={login} type="button">Entrar</button>
+            <button onClick={login} className="submit" type="button">Entrar</button>
         </form>
     </div>
   );

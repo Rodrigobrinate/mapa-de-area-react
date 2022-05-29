@@ -41,7 +41,7 @@ input {
     margin-right: auto;
 }
 
-button {
+button.submit {
     display: block;
     width: max-content;
     margin-left: auto;
