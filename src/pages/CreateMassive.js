@@ -4,6 +4,7 @@ import { Link} from 'react-router-dom';
 import Header from '../components/Header';
 import { Editor } from '@tinymce/tinymce-react';
 import api from "../components/api";
+import {Form, Button } from 'react-bootstrap'
 
 function Create() {
     const [colaborator, setColaborator] = useState([])
@@ -15,6 +16,7 @@ const editorRef = useRef(null);
   const log = () => {
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
+      return editorRef.current.getContent();
     }
   };
 
@@ -49,6 +51,7 @@ if (localStorage.getItem('token') === null) {
             returndate: document.getElementById('return_date').value,
             date: document.getElementById('init_date').value,
             type: document.getElementById('type').value,
+            description: log()
         },headers).then((response) => {
             if(response.date.auth === false){
                 window.location.href = '/login'
@@ -64,14 +67,13 @@ if (localStorage.getItem('token') === null) {
   return (
     <div className="AppCreate">
         <Header />
-        <Link className='btn btn-add' to="/"> visualizar</Link>
+        
      <form >
 
     
-     <Editor
+     <Editor id="description"
         tinymceScriptSrc={process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'}
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue='<p>This is the initial content of the editor.</p>'
         init={{
           height: 500,
           menubar: false,
@@ -88,22 +90,23 @@ if (localStorage.getItem('token') === null) {
         }}
       />
          <span>cidade</span>
-         <select id="city">
+         <Form.Select id="city" className='mb-2'>
             <option>selecione a cidade</option>
             {city.map((item)=> <option value={item.id}>{item.name}</option>)}
             
-         </select  >
+         </Form.Select  >
          
-         <select id="type">
-            <option>selecione o tipo de massiva</option>
+         <span>tipo de massiva</span>
+         <Form.Select id='type' aria-label="Default select example">
+         <option>selecione o tipo de massiva</option>
              <option value="queda">queda</option>
-         </select>
+        </Form.Select>
          
             <span>data de inico</span>
-            <input id='init_date' type="date" />
+            <Form.Control id='init_date' type="date" />
             <span>previsão de conclusão</span>
-            <input id='return_date' type="date" />
-            <button type='button' onClick={create} className="submit" >cadastrar</button>
+            <Form.Control id='return_date' type="date" />
+            <Button variant="success" type='button' onClick={create} className="submit" >cadastrar</Button>
          
      </form>
     </div>

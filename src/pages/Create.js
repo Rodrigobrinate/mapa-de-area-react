@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link} from 'react-router-dom';
 import Header from '../components/Header';
 import api from "../components/api";
+import { Button, Form } from 'react-bootstrap';
 
 
 function Create() {
@@ -60,34 +61,34 @@ if (localStorage.getItem('token') === null) {
   return (
     <div className="AppCreate">
         <Header />
-        <Link className='btn btn-add' to="/"> visualizar</Link>
+     
      <form >
          <span>cidade</span>
-         <select id="city">
+         <Form.Select id="city">
             <option>selecione a cidade</option>
             {city.map((item)=> <option value={item.id}>{item.name}</option>)}
             
-         </select  >
+         </Form.Select  >
          <span>Técnico</span>
-         <select id="colaborator">
+         <Form.Select id="colaborator">
             <option>selecione o tecnioc</option>
             {colaborator.map((item)=> <option value={item.id}>{item.name}</option>)}
-         </select>
+         </Form.Select>
          <span>período</span>
-         <select id='period'>
+         <Form.Select id='period'>
             <option>selecione o período</option>
             <option value={"08:00 as 18:00"}>dia</option>
             <option value={"13:00 as 21:00"}>noite</option>
-         </select>
+         </Form.Select>
          <span>tipo de serviço</span>
-         <select id='type'>
+         <Form.Select id='type'>
             <option>selecione o tipo de serviço</option>
             <option value={"Instalação"}>Instalação</option>
             <option value={"manutenção"}>manutanção</option>
-         </select>
+         </Form.Select>
             <span>data</span>
-            <input id='date' type="date" />
-            <button type='button' onClick={create} className="submit" >cadastrar</button>
+            <Form.Control id='date' type="date" />
+            <Button type='button' onClick={create} className="submit" >cadastrar</Button>
          
      </form>
     </div>

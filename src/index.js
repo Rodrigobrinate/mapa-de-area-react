@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import CreateMassive from './pages/CreateMassive';
 import Massive from './pages/Massive';
 import Cofee from './pages/Cofee';
+import ClientMassive from './pages/ClientMassive';
 import CreateClienteMassive from './pages/CreateClienteMassive';
 import reportWebVitals from './reportWebVitals';
 import {
@@ -29,6 +30,8 @@ root.render(
       <Route path="/massive" element={<Massive />}></Route>
       <Route path="/createClienteMassive" element={<CreateClienteMassive />}></Route>
       <Route path="/cofee" element={<Cofee />}></Route>
+      <Route path="/clientMassive" element={<ClientMassive />}></Route>
+     
     </Routes>
   </BrowserRouter>
 );
@@ -37,3 +40,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+ 

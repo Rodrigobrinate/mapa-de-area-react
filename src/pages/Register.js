@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
 import api from '../components/api';
+import {Form} from 'react-bootstrap';
 
 function Login() {
    
@@ -25,17 +26,19 @@ function Login() {
         <Header />
         <form className='register'  >
         <span>nome</span>
-            <input type="text" id="name" />
+            <Form.Control type="text" id="name" />
             <span>email</span>
-            <input type="text" id="email" />
+            <Form.Control type="text" id="email" />
             <span>selecione o nivel de permissão do usuário</span>
-            <select id='department'>
-                <option>selecione o nivel de usuário</option>
-                <option value="1">administrador</option>
-                <option value="2">colaborador</option>
-            </select>
+            <Form.Select id='department'>
+                <option>selecione setor</option>
+                <option value="1">Call center</option>
+                <option value="2">Tecnioco</option>
+                <option value="3">Backoffice</option>
+                <option value="4">CGR</option>
+            </Form.Select>
             <span>Senha</span>
-            <input type="password" id="password" />
+            <Form.Control type="password" id="password" />
             <button onClick={register} className="submit" type="button">Entrar</button>
         </form>
     </div>

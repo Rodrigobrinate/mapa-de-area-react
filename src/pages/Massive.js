@@ -2,10 +2,11 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {Card } from 'react-bootstrap';
+import {Card, ListGroup } from 'react-bootstrap';
 import './styles/Massive.css'
 import Header from '../components/Header';
 import api from "../components/api";
+import { DocumentRemoveIcon } from '@heroicons/react/solid';
 
 function Massive() {
   const [massive, setMassive] = useState([])
@@ -17,14 +18,15 @@ function Massive() {
         setMassive(
       
             response.data.map((item) => {    
+              
                 return (
                     
                     <Card style={{ width: '18rem' }}>
                     <Card.Body>
                       <Card.Title>{item.id+"    "}{item.type}</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">{item.city.name}</Card.Subtitle>
-                      <Card.Text>
-                        {item.description}
+                    <Card.Text dangerouslySetInnerHTML={{ __html: item.description }} >
+                        
                       </Card.Text>
                     </Card.Body>
                   </Card>
@@ -78,9 +80,9 @@ response.map((item) => {
     <div className="Massive"> <Header />
       
 
-      <ul>
+      <ListGroup className='item'>
      {massive}
-     </ul>
+     </ListGroup>
     </div>
   );
 }

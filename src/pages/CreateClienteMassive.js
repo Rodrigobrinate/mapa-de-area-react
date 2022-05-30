@@ -5,10 +5,11 @@ import { useState, useEffect } from 'react';
 import { Link} from 'react-router-dom';
 import Header from '../components/Header';
 import api from "../components/api";
+import { Form,Button } from 'react-bootstrap';
 
 function CreateClienteMassive() {
     const [colaborator, setColaborator] = useState([])
-    const [city, setCity] = useState([])
+    const [massiva, setMassiva] = useState([])
     const [msg, setMsg] = useState('')
    
 
@@ -18,14 +19,9 @@ if (localStorage.getItem('token') === null) {
     window.location.href = '/login'
     }
 
-    useEffect(() => { 
-        api.get("/colaborator")
-        .then((response) => setColaborator(response.data))
-    }, []);
-
 
     useEffect(() => { 
-        api.get("/city").then((response) => setCity(response.data))
+        api.get("/Massive").then((response) => setMassiva(response.data))
     }, []);
 
     function create(item){
@@ -38,12 +34,11 @@ if (localStorage.getItem('token') === null) {
         }
 
 
-        api.post("/createMassiveCliet",{
+        api.post("/createMassiveClient",{
             
-            city: document.getElementById('city').value,
-            returndate: document.getElementById('return_date').value,
-            date: document.getElementById('init_date').value,
-            type: document.getElementById('type').value,
+            massive_id: document.getElementById('massive').value,
+            name: document.getElementById('name').value,
+            problem: document.getElementById('problem').value,
         },headers).then((response) => {
             if(response.date.auth === false){
                 window.location.href = '/login'
@@ -54,26 +49,33 @@ if (localStorage.getItem('token') === null) {
             }
         })
     }
-
-    
   return (
     <div className="AppCreate">
         <Header />
-        <Link className='btn btn-add' to="/"> visualizar</Link>
+        
      <form >
          <span>Massiva</span>
-         <select id="city">
+         <Form.Select id="massive">
             <option>selecione a massiva</option>
-            {city.map((item)=> <option value={item.id}>{item.name}</option>)}
+            {massiva.map((item)=> <option value={item.id}>{item.id+"  "}{item.city.name}</option>)}
             
-         </select  >
+         </Form.Select  >
          <span>Nome</span>
-         <input type="text" id="name" placeholder="digite o nome do cliente" />
-         <span>Problema</span>
-         <input type="text" id="name" placeholder="digite o problema do cliente" />
-         
+         <Form.Control type="text" id="name" placeholder="digite o nome do cliente" />
+            <span>Problema</span>
+         <Form.Select id="problem">
+            <option>selecione o problema</option>
+             <option value='sem acesso'>sem acesso</option>
+             <option value='sem acesso'>conexão lenta</option>
+             
             
-            <button type='button' onClick={create} className="submit" >cadastrar</button>
+         </Form.Select>
+       
+            <Button 
+            variant={"success"} 
+            type='Button' 
+            onClick={create} 
+            className="submit">cadastrar</Button>
          
      </form>
     </div>
