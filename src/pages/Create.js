@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Link} from 'react-router-dom';
 import Header from '../components/Header';
 import api from "../components/api";
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Alert } from 'react-bootstrap';
 
 
 function Create() {
@@ -47,13 +47,9 @@ if (localStorage.getItem('token') === null) {
             date: document.getElementById('date').value,
             type: document.getElementById('type').value,
         },headers).then((response) => {
-            if(response.date.auth === false){
-                window.location.href = '/login'
-            }else if (response.data.status === 'error'){
-                setMsg(response.data.msg)
-            }else if (response.data.status === 'success'){
-                setMsg('Cadastrado com sucesso')
-            }
+            response.data.st == 1 ?
+            setMsg(<Alert  variant="success" >{response.data.msg}</Alert>) :
+             setMsg(<Alert  variant="danger" >{response.data.msg}</Alert>)
         })
     }
 
@@ -61,28 +57,28 @@ if (localStorage.getItem('token') === null) {
   return (
     <div className="AppCreate">
         <Header />
-     
+     {msg}
      <form >
          <span>cidade</span>
          <Form.Select id="city">
-            <option>selecione a cidade</option>
+            <option value={0}>selecione a cidade</option>
             {city.map((item)=> <option value={item.id}>{item.name}</option>)}
             
          </Form.Select  >
          <span>Técnico</span>
          <Form.Select id="colaborator">
-            <option>selecione o tecnioc</option>
+            <option value={0}>selecione o tecnioc</option>
             {colaborator.map((item)=> <option value={item.id}>{item.name}</option>)}
          </Form.Select>
          <span>período</span>
          <Form.Select id='period'>
-            <option>selecione o período</option>
+            <option value={0}>selecione o período</option>
             <option value={"08:00 as 18:00"}>dia</option>
             <option value={"13:00 as 21:00"}>noite</option>
          </Form.Select>
          <span>tipo de serviço</span>
          <Form.Select id='type'>
-            <option>selecione o tipo de serviço</option>
+            <option value={0}>selecione o tipo de serviço</option>
             <option value={"Instalação"}>Instalação</option>
             <option value={"manutenção"}>manutanção</option>
          </Form.Select>

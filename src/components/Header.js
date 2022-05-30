@@ -66,8 +66,8 @@ function logoff(){
               <Nav.Link href="/massive">Massiva</Nav.Link>
               <Nav.Link href="/">Mapa de area </Nav.Link>
               <Nav.Link href="/cofee">Café </Nav.Link>
-              <Nav.Link href="/createClienteMassive">cadastrar clente Massiva </Nav.Link>
-              <Nav.Link href="/clientMassive">clente Massiva </Nav.Link>
+              <Nav.Link href="/createClienteMassive">cadastrar cliente Massiva </Nav.Link>
+              <Nav.Link href="/clientMassive">cliente Massiva </Nav.Link>
              {admin}
               
             </Nav>

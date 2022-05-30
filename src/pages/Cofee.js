@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import api from "../components/api";
 import Header from "../components/Header";
 import './styles/Cofee.css'
-import {Button, ListGroup, Modal, ProgressBar} from 'react-bootstrap';
+import {Button, ListGroup, Modal, ProgressBar, Alert} from 'react-bootstrap';
 
 
 
@@ -57,28 +57,35 @@ let time = new Date().getTime() - date ;
             'x-access-token': localStorage.getItem('token')
             }
         }
-    api.get("/coffee", headers).then(response => {
+        api.get("/coffee", headers).then(response => {
         
-        setUserCoffee(response.data.map((item) => {
-            const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
-            if (item.user.id == localStorage.getItem('id')) {
-                setShow(true)
-                startCoffee(parseInt(new Date(item.created_at).getTime()))
-
+            setUserCoffee(response.data.map((item) => {
+                const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
+                if (item.user.id == localStorage.getItem('id')) {
+                    setShow(true)
+                    startCoffee(parseInt(new Date(item.created_at).getTime()))
+    
+                
             
-        
-        return (
-            <ListGroup.Item key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
-        )
-        
-        }else{
-
             return (
                 <ListGroup.Item key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
             )
+            
+            }else{
+    
+                return (
+                    <ListGroup.Item key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
+                )
+            
+            }}))
+        }).catch((error) => {
+            console.log(error)
+            if(error.response.status ==  401){
+                window.location.href = '/login'
+            }
+        })
         
-        }}))
-    })
+   
 
 
 
@@ -96,11 +103,11 @@ let time = new Date().getTime() - date ;
             }
         }
         api.get("/closeCofee",headers).then((response) => {
-            if(response.date.auth === false){
-                window.location.href = '/login'
-            }else  {
+            
+            api.get("/coffee", headers).then(response => {
+        
                 setUserCoffee(response.data.map((item) => {
-
+                    const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
                     if (item.user.id == localStorage.getItem('id')) {
                         setShow(true)
                         startCoffee(parseInt(new Date(item.created_at).getTime()))
@@ -108,15 +115,22 @@ let time = new Date().getTime() - date ;
                     
                 
                 return (
-                    <ListGroup.Item key={item.id}>{item.user.name}</ListGroup.Item>
+                    <ListGroup.Item key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
                 )
+                
                 }else{
         
                     return (
-                        <ListGroup.Item key={item.id}>{item.user.name}</ListGroup.Item>
+                        <ListGroup.Item key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
                     )
                 
                 }}))
+            })
+            
+        }).catch((error) => {
+            console.log(error)
+            if(error.response.status ==  401){
+                window.location.href = '/login'
             }
         })
         
@@ -134,12 +148,41 @@ let time = new Date().getTime() - date ;
         }
     }
     api.get("/addCoffee",headers).then((response) => {
-      
-        if(response.data.auth === false){
+        api.get("/coffee", headers).then(response => {
+        
+            setUserCoffee(response.data.map((item) => {
+                const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
+                if (item.user.id == localStorage.getItem('id')) {
+                    setShow(true)
+                    startCoffee(parseInt(new Date(item.created_at).getTime()))
+    
+                
+            
+            return (
+                <ListGroup.Item key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
+            )
+            
+            }else{
+    
+                return (
+                    <ListGroup.Item key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
+                )
+            
+            }}))
+        })
+        if (response.data.st == 1 ){
+            setMsg(<Alert  variant="success" >{response.data.msg}</Alert>) 
+              handleShow() 
+              startCoffee(parseInt(response.data.date.getTime())) 
+              
+            }else{
+             setMsg(<Alert  variant="danger" >{response.data.msg}</Alert>)
+             }
+        }
+    ).catch((error) => {
+        console.log(error)
+        if(error.response.status ==  401){
             window.location.href = '/login'
-        }else if( response.data.status == 1){
-            setShow(true)
-            startCoffee(parseInt(response.data.date))
         }
     })
 }
@@ -147,7 +190,8 @@ let time = new Date().getTime() - date ;
   return (
     <div>
         <Header />
-        <Button variant="primary" onClick={() => {handleShow()
+        {msg}
+        <Button variant="primary" onClick={() => {
         addCofee() }}>
         ir para o café
       </Button>
