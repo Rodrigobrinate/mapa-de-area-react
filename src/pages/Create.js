@@ -66,10 +66,11 @@ if (localStorage.getItem('token') === null) {
             
          </Form.Select  >
          <span>Técnico</span>
-         <Form.Select id="colaborator">
-            <option value={0}>selecione o tecnioc</option>
+         <input className='form-control ' type="text" list='colaborator'  />
+         <datalist id="colaborator">
+            <option value={0}>selecione o tecnico</option>
             {colaborator.map((item)=> <option value={item.id}>{item.name}</option>)}
-         </Form.Select>
+         </datalist>
          <span>período</span>
          <Form.Select id='period'>
             <option value={0}>selecione o período</option>
