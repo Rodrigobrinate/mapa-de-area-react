@@ -4,7 +4,9 @@ import api from "../components/api";
 import Header from "../components/Header";
 import './styles/Cofee.css'
 import {Button, ListGroup, Modal, ProgressBar, Alert} from 'react-bootstrap';
-
+//const io = io();
+//const { Server } = require("socket.io");
+import { io } from "socket.io-client";
 
 
 
@@ -21,8 +23,9 @@ const [timer, setTimer] = useState(0);
 
  function startCoffee(date){
 
+const socket = io("http://localhost:3001");
 setInterval(() => {
-
+   
 console.log(date)
 let time = new Date().getTime() - date ;
 
@@ -50,6 +53,9 @@ let time = new Date().getTime() - date ;
     }
 
     useEffect (() => {
+
+
+
 
         const headers = {
             headers: {

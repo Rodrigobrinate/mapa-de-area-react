@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import api from '../components/api';
 import {Form, Alert} from 'react-bootstrap';
 
-function Login() {
+function Register() {
    const [msg, setMsg] = useState('')
     
     function register(item){
@@ -16,13 +16,10 @@ function Login() {
             name: document.getElementById('name').value,
             department: document.getElementById('department').value,
         }).then((response) => {
-            if (response.data.st == 1){
-                
-            setMsg(<Alert  variant="success" >{response.data.msg}</Alert>)
-            window.location.href = '/login' 
-        }else{
+            response.data.st == 1 ?
+            window.location.href = '/login' :
              setMsg(<Alert  variant="danger" >{response.data.msg}</Alert>)}
-        })
+        )
     }
 
     
@@ -49,4 +46,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

@@ -18,7 +18,7 @@ function Login() {
             localStorage.setItem('id', response.data.id)
             localStorage.setItem('department', response.data.department)
            
-            return window.location.href = '/create'
+            return window.location.href = '/cofee'
         })
     }
 

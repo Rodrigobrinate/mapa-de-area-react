@@ -17,6 +17,7 @@
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "socket.io-client": "^4.5.1",
     "tinymce": "^6.0.3",
     "web-vitals": "^2.1.4"
   },
@@ -27,6 +28,8 @@
     "eject": "react-scripts eject",
     "postinstall": "node ./postinstall.js"
   },
+  "homepage": ".",
+  "proxy": "http://localhost:3000",
   "eslintConfig": {
     "extends": [
       "react-app",
