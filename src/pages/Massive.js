@@ -10,9 +10,31 @@ import { DocumentRemoveIcon } from '@heroicons/react/solid';
 
 function Massive() {
   const [massive, setMassive] = useState([])
+  const headers = {
+    headers: {
+    'Content-Type': 'application/json',
+    'x-access-token': localStorage.getItem('token')
+    }
+}
    
   useEffect(() => {
-    api.get("/massive").then((response) => 
+
+    if (localStorage.getItem('token') === null) {
+      window.location.href = '/login'
+  }
+
+  const option = {
+    year: 'numeric',
+    month: ( 'numeric'),
+    weekday: ('short'),
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+}
+const locale = 'pt-br'
+
+    api.get("/massive", headers).then((response) => 
       
 
         setMassive(
@@ -28,6 +50,9 @@ function Massive() {
                     <Card.Text dangerouslySetInnerHTML={{ __html: item.description }} >
                         
                       </Card.Text>
+                      <span className='date'>
+                      <p>{new Date(item.date).toLocaleDateString(locale, option)}</p>
+                      <p>{new Date(item.returndate).toLocaleDateString(locale, option)}</p></span>
                     </Card.Body>
                   </Card>
                 )}

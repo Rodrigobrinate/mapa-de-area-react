@@ -9,7 +9,17 @@ export default function ClientMassive() {
     const [clients, setClients] = useState([]);
 
     useEffect(() => {
-        api.get("/clientMassive").then((response) => {
+      if (localStorage.getItem('token') === null) {
+        window.location.href = '/login'
+    }
+    const headers = {
+      headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': localStorage.getItem('token')
+      }
+  }
+
+        api.get("/clientMassive",headers).then((response) => {
           setClients(response.data)
             
         })
@@ -38,7 +48,7 @@ export default function ClientMassive() {
     <tr>
       <td>{item.name}</td>
       <td >{item.problem}</td>
-      <td>{item.massive.city.name}</td>
+      <td className="city">{item.massive.city.name}</td>
       <td>{item.massive.id}</td>
       <th><Alert variant={'warning'}>a verificar</Alert></th>
       <th><Button variant={'success'}>verificado</Button></th>

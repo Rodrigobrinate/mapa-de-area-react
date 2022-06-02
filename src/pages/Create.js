@@ -20,26 +20,26 @@ console.log('teste')
 if (localStorage.getItem('token') === null) {
     window.location.href = '/login'
     }
-
-    useEffect(() => { 
-        api.get("/colaborator")
-        .then((response) => setColaborator(response.data))
-    }, []);
-
-
-    useEffect(() => { 
-        api.get("/city").then((response) => setCity(response.data))
-    }, []);
-
-    function create(item){
-        const headers = {
+    
+const headers = {
             headers: {
             'Content-Type': 'application/json',
             'x-access-token': localStorage.getItem('token')
             }
         }
+    useEffect(() => { 
+
+        
+        api.get("/colaborator", headers)
+        .then((response) => setColaborator(response.data))
+    }, []);
 
 
+    useEffect(() => { 
+        api.get("/city", headers).then((response) => setCity(response.data))
+    }, []);
+
+    function create(item){
         api.post("/create",{
             colaborator: document.getElementById('colaborator').value,
             city: document.getElementById('city').value,

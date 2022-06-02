@@ -24,29 +24,25 @@ const editorRef = useRef(null);
 if (localStorage.getItem('token') === null) {
     window.location.href = '/login'
     }
+    const headers = {
+      headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': localStorage.getItem('token')
+      }
+  }
 
     useEffect(() => { 
-        api.get("/colaborator")
+        api.get("/colaborator", headers)
         .then((response) => setColaborator(response.data))
     }, []);
 
 
     useEffect(() => { 
-        api.get("/city").then((response) => setCity(response.data))
+        api.get("/city", headers).then((response) => setCity(response.data))
     }, []);
 
     function create(item){
-        console.log('teste')
-        const headers = {
-            headers: {
-            'Content-Type': 'application/json',
-            'x-access-token': localStorage.getItem('token')
-            }
-        }
-
-
         api.post("/createMassive",{
-            
             city: document.getElementById('city').value,
             returndate: document.getElementById('return_date').value,
             date: document.getElementById('init_date').value,
@@ -103,9 +99,9 @@ if (localStorage.getItem('token') === null) {
         </Form.Select>
          
             <span>data de inico</span>
-            <Form.Control id='init_date' type="date" />
+            <Form.Control id='init_date' type="datetime-local" />
             <span>previsão de conclusão</span>
-            <Form.Control id='return_date' type="date" />
+            <Form.Control id='return_date' type="datetime-local" />
             <Button variant="success" type='button' onClick={create} className="submit" >cadastrar</Button>
          
      </form>

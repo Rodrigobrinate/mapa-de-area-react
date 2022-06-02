@@ -3,6 +3,7 @@
     padding: 10px;
     margin-left: 10px;
     margin-top: 10px; 
+    width: 90% !important;
 }
 
 .card-title {
@@ -15,4 +16,34 @@
     display: inline;
     width: max-content;
     margin-left: 10px;
+    font-size: 1.8rem !important;
+}
+
+.item {
+    display: block !important;
+}
+
+.h5 {
+    font-size: 1.8rem !important;
+}
+
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top:  30px
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 0px !important;
+    text-align: center;
+}
+
+span.date {
+    display: FLEX;
+    width: 100%;
+    margin-left: 0px !important; 
+    justify-content: space-around;
+    margin-right: 0px !important;; 
+    margin-top: 10px;
 }

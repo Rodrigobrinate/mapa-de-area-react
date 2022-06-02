@@ -28,19 +28,17 @@ if (!!localStorage.getItem('token')) {
 
 
 if (localStorage.getItem('department') == 3) {
-
+console.log(localStorage.getItem('department'))
   setAdmin( <NavDropdown title="administração" id="basic-nav-dropdown">
   <NavDropdown.Item href="/create">adicionar técnico</NavDropdown.Item>
-  <NavDropdown.Item href="/register">adicionar usuário</NavDropdown.Item>
+
 </NavDropdown>)
 }else if (localStorage.getItem("department") == 4){
   setAdmin( <NavDropdown title="administração" id="basic-nav-dropdown">
-  <NavDropdown.Item href="/createMassive">adicionar massiva</NavDropdown.Item>
+  <NavDropdown.Item href="/create/massive">adicionar massiva</NavDropdown.Item>
   <NavDropdown.Item href="/create">adicionar técnico</NavDropdown.Item>
 </NavDropdown>)
 }
-}else{
-  return window.location.href = '/login'
 }
 }, []);
 
@@ -59,15 +57,15 @@ function logoff(){
      return(
         <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">Acesse</Navbar.Brand>
+          <Navbar.Brand href="/">Acesse</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/massive">Massiva</Nav.Link>
-              <Nav.Link href="/">Mapa de area </Nav.Link>
+              <Nav.Link href="/Mapa/area">Mapa de area </Nav.Link>
               <Nav.Link href="/cofee">Café </Nav.Link>
-              <Nav.Link href="/createClienteMassive">cadastrar cliente Massiva </Nav.Link>
-              <Nav.Link href="/clientMassive">cliente Massiva </Nav.Link>
+              <Nav.Link href="/create/cliente/massive">cadastrar cliente Massiva </Nav.Link>
+              <Nav.Link href="/client/massive">cliente Massiva </Nav.Link>
              {admin}
               
             </Nav>

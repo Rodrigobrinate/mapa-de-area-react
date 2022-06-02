@@ -4,9 +4,7 @@ import api from "../components/api";
 import Header from "../components/Header";
 import './styles/Cofee.css'
 import {Button, ListGroup, Modal, ProgressBar, Alert} from 'react-bootstrap';
-//const io = io();
-//const { Server } = require("socket.io");
-import { io } from "socket.io-client";
+
 
 
 
@@ -23,7 +21,6 @@ const [timer, setTimer] = useState(0);
 
  function startCoffee(date){
 
-const socket = io("http://localhost:3001");
 setInterval(() => {
    
 console.log(date)
@@ -45,18 +42,11 @@ let time = new Date().getTime() - date ;
     return setTimer(hours+":"+minutes+":"+seconds)
 }, 1000)}
 
-
-
-
     if (localStorage.getItem('token') === null) {
         window.location.href = '/login'
     }
 
     useEffect (() => {
-
-
-
-
         const headers = {
             headers: {
             'Content-Type': 'application/json',
@@ -197,7 +187,7 @@ let time = new Date().getTime() - date ;
     <div>
         <Header />
         {msg}
-        <Button variant="primary" onClick={() => {
+        <Button className="btn-coffee" variant="primary" onClick={() => {
         addCofee() }}>
         ir para o café
       </Button>

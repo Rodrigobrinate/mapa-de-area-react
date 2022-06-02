@@ -1,0 +1,94 @@
+.App {
+ width: 100%;
+}
+
+
+
+.item {
+  display: flex;
+  flex-direction: row !important;
+  width: 90vw;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+  
+  
+}
+
+.li1 {
+  color: black;
+  margin: 10px;
+  width: 27%;
+  border: 1px solid;
+  padding: 20px;
+  height: max-content;
+}
+
+.li2 {
+  margin-left: 10px;
+  padding: 5px;
+  background: #c9c9c9;
+  margin: 4px;
+  border-radius: 5px;
+  display: flex !important;
+  justify-content: space-between;
+}
+
+.li2 div {
+  display: block;
+}
+
+p{
+  font-size: 0.9rem;
+}
+
+input.date {
+  display: block ;
+  width: 20vw !important;
+  margin-left: 10% !important;
+  padding: 10px 20px;
+   margin-right: 0px; 
+  margin-top: 10px;
+}
+
+ul {
+  list-style : unset !important;
+}
+
+.name {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.btn { 
+  width: max-content; 
+  padding: 10px 20px;
+  border: none;
+}
+
+.btn-add {
+  float: right;
+  margin-right: 10%;
+  border-radius: 5px; 
+  background-color: rgb(0, 255, 200);
+  text-decoration: none;
+  color: black;
+}
+
+.accordion-item {
+  width: 30% !important;
+  border-top: 1px solid rgba(0,0,0,.125)!important;
+}
+
+.accordion {
+  display: flex;
+ flex-wrap: wrap;
+ width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+img.delete {
+  height: 15px !important;
+}

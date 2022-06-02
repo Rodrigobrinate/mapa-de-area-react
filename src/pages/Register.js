@@ -36,7 +36,7 @@ function Register() {
             <Form.Select required id='department'>
                 <option value={0}>selecione setor</option>
                 <option value="1">Call center</option>
-                <option value="2">Tecnioco</option>
+                <option value="2">Técnico</option>
             </Form.Select>
             <span>Senha</span>
             <Form.Control required type="password" id="password" />

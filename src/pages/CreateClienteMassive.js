@@ -21,21 +21,19 @@ if (localStorage.getItem('token') === null) {
     window.location.href = '/login'
     }
 
+    const headers = {
+        headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': localStorage.getItem('token')
+        }
+    }
 
     useEffect(() => { 
-        api.get("/Massive").then((response) => setMassiva(response.data))
+
+        api.get("/Massive", headers).then((response) => setMassiva(response.data))
     }, []);
 
     function create(item){
-       
-        const headers = {
-            headers: {
-            'Content-Type': 'application/json',
-            'x-access-token': localStorage.getItem('token')
-            }
-        }
-
-
         api.post("/createMassiveClient",{
             
             massive_id: document.getElementById('massive').value,

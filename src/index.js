@@ -10,6 +10,7 @@ import Massive from './pages/Massive';
 import Cofee from './pages/Cofee';
 import ClientMassive from './pages/ClientMassive';
 import CreateClienteMassive from './pages/CreateClienteMassive';
+import MapaArea from './pages/MapaArea';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
@@ -26,11 +27,12 @@ root.render(
       <Route path="/create" element={<Create />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/register" element={<Register />}></Route>
-      <Route path="/createMassive" element={<CreateMassive />}></Route>
+      <Route path="/create/massive" element={<CreateMassive />}></Route>
       <Route path="/massive" element={<Massive />}></Route>
-      <Route path="/createClienteMassive" element={<CreateClienteMassive />}></Route>
+      <Route path="/create/cliente/massive" element={<CreateClienteMassive />}></Route>
       <Route path="/cofee" element={<Cofee />}></Route>
-      <Route path="/clientMassive" element={<ClientMassive />}></Route>
+      <Route path="/client/massive" element={<ClientMassive />}></Route>
+      <Route path="/mapa/area" element={<MapaArea />}></Route>
      
     </Routes>
   </BrowserRouter>
