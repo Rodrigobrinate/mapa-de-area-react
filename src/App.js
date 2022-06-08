@@ -13,6 +13,8 @@ export default function Cofee() {
     const [userCoffee, setUserCoffee] = useState([])
 
     useEffect (() => {
+
+      setInterval(() => {
         api.get("/coffee").then(response => {
           
             setUserCoffee(response.data.map((item) => {
@@ -27,6 +29,10 @@ export default function Cofee() {
                 window.location.href = '/login'
             }
         })
+
+      }, 1000);
+
+
     }, []);
  
   return (

@@ -37,6 +37,7 @@ console.log(localStorage.getItem('department'))
   setAdmin( <NavDropdown title="administração" id="basic-nav-dropdown">
   <NavDropdown.Item href="/create/massive">adicionar massiva</NavDropdown.Item>
   <NavDropdown.Item href="/create">adicionar técnico</NavDropdown.Item>
+  <NavDropdown.Item href="/adm/coffee">gerenciar café</NavDropdown.Item>
 </NavDropdown>)
 }
 }

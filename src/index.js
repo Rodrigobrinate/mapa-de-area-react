@@ -11,6 +11,7 @@ import Cofee from './pages/Cofee';
 import ClientMassive from './pages/ClientMassive';
 import CreateClienteMassive from './pages/CreateClienteMassive';
 import MapaArea from './pages/MapaArea';
+import AdmCoffee from './pages/AdmCoffee';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
@@ -33,6 +34,7 @@ root.render(
       <Route path="/cofee" element={<Cofee />}></Route>
       <Route path="/client/massive" element={<ClientMassive />}></Route>
       <Route path="/mapa/area" element={<MapaArea />}></Route>
+      <Route path="/adm/coffee" element={<AdmCoffee />}></Route>
      
     </Routes>
   </BrowserRouter>

@@ -8,6 +8,58 @@ import {Form, Alert} from 'react-bootstrap';
 
 function Register() {
    const [msg, setMsg] = useState('')
+
+useEffect(() => {
+
+   let name = document.getElementById('name');
+  let email = document.getElementById('email')
+  let department = document.getElementById('department')
+  let password = document.getElementById('password')
+   name.addEventListener('keyup', function(e) { 
+     console.log(e);
+   
+       if (e.key === 'Enter') {
+           e.preventDefault();
+           document.getElementById('email').focus();
+       } else {
+           document.getElementById('name').focus();
+       }  
+     }) 
+
+     email.addEventListener('keyup', function(e) { 
+        console.log(e);
+      
+          if (e.key === 'Enter') {
+              e.preventDefault();
+              document.getElementById('department').focus();
+          } else {
+              document.getElementById('email').focus();
+          }  
+        }) 
+        department.addEventListener('keyup', function(e) { 
+            console.log(e);
+          
+              if (e.key === 'Enter') {
+                  e.preventDefault();
+                  document.getElementById('password').focus();
+              } else {
+                  document.getElementById('department').focus();
+              }  
+            }) 
+          
+            password.addEventListener('keyup', function(e) { 
+              console.log(e);
+            
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    register();
+                } else {
+                    document.getElementById('password').focus();
+                }  
+              }) 
+
+    }, []);
+
     
     function register(item){
         api.post("/register",{
