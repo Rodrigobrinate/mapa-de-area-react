@@ -204,7 +204,7 @@ let time = new Date().getTime() - date ;
         </Modal.Footer>
       </Modal>
       <div className="cofee">
-            <h1>colabores no café</h1>
+            <h1>colaboradores no café</h1>
             <ListGroup>
                 {userCoffee}
             </ListGroup>
