@@ -1,7 +1,6 @@
 import './styles/Login.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Header from '../components/Header';
 import api from '../components/api';
 import {Form, Alert} from 'react-bootstrap';
@@ -68,7 +67,7 @@ useEffect(() => {
             name: document.getElementById('name').value,
             department: document.getElementById('department').value,
         }).then((response) => {
-            response.data.st == 1 ?
+            response.data.st === 1 ?
             window.location.href = '/login' :
              setMsg(<Alert  variant="danger" >{response.data.msg}</Alert>)}
         )
@@ -93,6 +92,7 @@ useEffect(() => {
             <span>Senha</span>
             <Form.Control required type="password" id="password" />
             <button onClick={register} className="submit" type="button">Entrar</button>
+            <a href="/login center" >Já possuo uma conta</a>
         </form>
     </div>
   );

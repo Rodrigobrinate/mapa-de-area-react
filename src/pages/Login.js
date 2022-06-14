@@ -1,7 +1,6 @@
 import './styles/Login.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import api from "../components/api";
 import { Form, Button, Alert } from 'react-bootstrap';
 import Header from '../components/Header';
@@ -14,7 +13,7 @@ let email = document.getElementById('email');
 let password = document.getElementById('password');
 email.addEventListener('keyup', function(e) { 
   console.log(e);
-
+ 
     if (e.key === 'Enter') {
         e.preventDefault();
         document.getElementById('password').focus();
@@ -80,6 +79,8 @@ email.addEventListener('keyup', function(e) {
   <Button onClick={login} variant="primary" type="button">
     Entrar
   </Button>
+ 
+  <a  style={{float: 'right'}} href='/register'>Cadastrar</a>
 </Form>
 
     </div>

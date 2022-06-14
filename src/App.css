@@ -92,3 +92,7 @@ ul {
 img.delete {
   height: 15px !important;
 }
+
+.list-group-item {
+  font-size: 1.2em;
+}
