@@ -49,8 +49,7 @@ export default function AdmCoffee() {
             setUserCoffee(response.data.map((item) => {
                 const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
                 if (item.user.id == localStorage.getItem('id')) {
-                    setShow(true)
-                    startCoffee(parseInt(new Date(item.created_at).getTime()))
+                   
     
                 
             

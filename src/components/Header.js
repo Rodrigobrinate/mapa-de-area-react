@@ -1,4 +1,4 @@
-import react, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import { Nav, Navbar,Container, NavDropdown} from 'react-bootstrap';
 import '../pages/styles/Header.css'
 
@@ -15,7 +15,7 @@ setLogin(
             olá: <a href="/login">login</a>
          </Navbar.Text>
       </Navbar.Collapse>)
-        
+         
 
 
 if (!!localStorage.getItem('token')) {
@@ -26,8 +26,16 @@ if (!!localStorage.getItem('token')) {
     olá: <a href="/login">{localStorage.getItem('name')}</a>
   </Navbar.Text><img onClick={logoff} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAANZJREFUSEvFlcsRwjAMRF8qgA6ACqAD6ASojHQAJVAKdEAHMDuTMJ4Q/2Sc+JJDrH1aS7YaKq+msj6TAw7ABVgbnT2AM3Dv44cOtGFlFO/DpLHxAd6F4j+6QwezAnS2qk/K+iae40B71QQ3YBGhmAHS3QEtsA1AigDSXXZO9h6IF5Byvu4eOTmOBM0HCLWp2xA6omtX9DHXRTVQkdWu+vqWGaA2VeZyEFomQPWLltNhJgd/AbwSnoEY6OnOk+FbpCLq8lhngsRPoYETyy77/+QzOTvDWMAH32ogGWOPiQcAAAAASUVORK5CYII="/> </Navbar.Collapse>  )
 
+if (localStorage.getItem('department') == 2) {
+  console.log(localStorage.getItem('department'))
+    setAdmin( <NavDropdown title="administração" id="basic-nav-dropdown">
+    <NavDropdown.Item href="/create">adicionar técnico</NavDropdown.Item>
+    <Nav.Link href="/escala/suport">escala suporte</Nav.Link>
+  
+  </NavDropdown>)
+  }
 
-if (localStorage.getItem('department') == 3) {
+else if (localStorage.getItem('department') == 3) {
 console.log(localStorage.getItem('department'))
   setAdmin( <NavDropdown title="administração" id="basic-nav-dropdown">
   <NavDropdown.Item href="/create">adicionar técnico</NavDropdown.Item>
@@ -37,7 +45,13 @@ console.log(localStorage.getItem('department'))
   setAdmin( <NavDropdown title="administração" id="basic-nav-dropdown">
   <NavDropdown.Item href="/create/massive">adicionar massiva</NavDropdown.Item>
   <NavDropdown.Item href="/create">adicionar técnico</NavDropdown.Item>
-  <NavDropdown.Item href="/adm/coffee">gerenciar café</NavDropdown.Item>
+  <NavDropdown.Item href="/adm/coffee">Gerenciar café</NavDropdown.Item>
+  <NavDropdown.Item href="/adm/escala/call">Gerenciar escala call center</NavDropdown.Item>
+  <NavDropdown.Item href="/adm/escala/suport">Gerenciar escala suporte</NavDropdown.Item>
+  <NavDropdown.Item href="/adm/create/escala" >criar escala</NavDropdown.Item>
+  <Nav.Link href="/escala/suport">escala suporte</Nav.Link>
+  
+  
 </NavDropdown>)
 }
 }
@@ -67,6 +81,8 @@ function logoff(){
               <Nav.Link href="/cofee">Café </Nav.Link>
               <Nav.Link href="/create/cliente/massive">cadastrar cliente Massiva </Nav.Link>
               <Nav.Link href="/client/massive">cliente Massiva </Nav.Link>
+              <Nav.Link href="/escala/call">escala call center</Nav.Link>
+              
              {admin}
               
             </Nav>

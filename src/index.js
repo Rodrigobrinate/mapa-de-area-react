@@ -12,6 +12,11 @@ import ClientMassive from './pages/ClientMassive';
 import CreateClienteMassive from './pages/CreateClienteMassive';
 import MapaArea from './pages/MapaArea';
 import AdmCoffee from './pages/AdmCoffee';
+import AdmEscalaCall from './pages/Adm/EscalaCall';
+import EscalaCall from './pages/EscalaCall';
+import AdmEscalaSuport from './pages/Adm/EscalaSupot';
+import CreateEscala from './pages/Adm/CrateEscala';
+import EscalaSuport from './pages/EscalaSuport';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
@@ -35,6 +40,11 @@ root.render(
       <Route path="/client/massive" element={<ClientMassive />}></Route>
       <Route path="/mapa/area" element={<MapaArea />}></Route>
       <Route path="/adm/coffee" element={<AdmCoffee />}></Route>
+      <Route path="/adm/escala/call" element={<AdmEscalaCall />}></Route>
+      <Route path="/escala/call" element={<EscalaCall />}></Route>
+      <Route path="/adm/escala/suport" element={<AdmEscalaSuport />}></Route>
+      <Route path="/adm/create/escala" element={<CreateEscala />}></Route>
+      <Route path="/escala/suport" element={<EscalaSuport />}></Route>
      
     </Routes>
   </BrowserRouter>
