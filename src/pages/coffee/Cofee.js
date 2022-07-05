@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import api from "../components/api";
-import Header from "../components/Header";
-import './styles/Cofee.css'
+import api from "../../components/api";
+import Header from "../../components/Header";
+//import './styles/Cofee.css'
 import {Button, ListGroup, Modal, ProgressBar, Alert} from 'react-bootstrap';
 
 
@@ -23,7 +23,6 @@ const [timer, setTimer] = useState(0);
 
 setInterval(() => {
    
-console.log(date)
 let time = new Date().getTime() - date ;
 
  let seconds = Math.floor(time / 1000) % 60;

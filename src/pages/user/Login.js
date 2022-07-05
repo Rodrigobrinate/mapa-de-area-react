@@ -1,9 +1,9 @@
-import './styles/Login.css'
+//import './styles/Login.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
-import api from "../components/api";
+import api from "../../components/api";
 import { Form, Button, Alert } from 'react-bootstrap';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 
 function Login() {
   const [msg, setMsg] = useState('');

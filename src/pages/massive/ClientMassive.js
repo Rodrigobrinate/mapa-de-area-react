@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import { useState, useEffect } from "react";
-import api from "../components/api";
+import api from "../../components/api";
 import { Table, Button, Alert } from "react-bootstrap";
-import './styles/ClientMassive.css'
+import '../styles/ClientMassive.css'
 
 export default function ClientMassive() {
     const [clients, setClients] = useState([]);
@@ -22,6 +22,8 @@ export default function ClientMassive() {
         api.get("/clientMassive",headers).then((response) => {
           setClients(response.data)
             
+        }).catch((error) => {
+          console.log(error)
         })
     }, []);
 

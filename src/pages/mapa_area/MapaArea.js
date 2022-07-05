@@ -1,11 +1,12 @@
 
-import './styles/MapaArea.css';
+//import './styles/MapaArea.css';
 import { useState, useEffect } from 'react';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 import {Accordion, ListGroup, Alert} from 'react-bootstrap';
-import api from '../components/api';
-import City from '../components/mapaArea/City';
+import api from '../../components/api';
+import City from '../../components/mapaArea/City';
 import MapContext from './MapContext';
+import AdmCity from '../../components/mapaArea/adm/City';
 
 
 export default function MapaArea() {
@@ -16,9 +17,16 @@ export default function MapaArea() {
 
 
   function getMap(data){
-    setCity(
-      <City data={data}/>
+   if (localStorage.getItem('department') >= 3){
+      setCity(
+      <AdmCity data={data}/>
     )
+      }else{
+        setCity(
+          <City data={data}/>
+        )
+      }
+    
   }
   
   
@@ -33,7 +41,7 @@ export default function MapaArea() {
   useEffect(() => {
     setCity(
       <button className="btn btn-primary" type="button" disabled>
-  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+  <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
   Loading...
 </button>
     )
@@ -43,7 +51,9 @@ export default function MapaArea() {
   }
 
     console.log(parseInt(localStorage.getItem('department')))
-    api.get("/",headers).then((response) => getMap(response.data) )
+    api.get("/",headers).then((response) => getMap(response.data) ).catch((error) => {
+      console.log(error)
+    })
 
   }, []);
 
@@ -61,36 +71,28 @@ export default function MapaArea() {
     
     api.post("/delete ",{
       id: id,
-      
-      
     }, headers ).then((response) => {
-      if (response.data.st === 1) {
         setMsg(<Alert  variant="success" >{response.data.msg}</Alert>)
-      api.get("/",headers).then((response) => getMap(response.data) )
-      }else {
-        setMsg(<Alert  variant="danger" >{response.data.msg}</Alert>)
-      }
-    })
+        api.get("/",headers)
+        .then((response) => getMap(response.data) )
+        .catch((error) => {
+          setMsg(<Alert  variant="danger" >{error.response.data.msg}</Alert>)
+        })      
+  }).catch((error) => {
+    setMsg(<Alert  variant="danger" >{error.response.data.msg}</Alert>)
+
+  })
     
   }
   function search(item){
     setDate(document.getElementById('date').value)
-    
     api.post("/search",{
       date: document.getElementById('date').value,
-      
-      
     }, headers  ).then((response) => 
-      
-
-
-       
           getMap(response.data)
-          
-          
-          
-          
-          )
+          ).catch((error) => {
+            setMsg(<Alert  variant="danger" >{error.response.data.msg}</Alert>)
+          })
   }
 
 
@@ -103,9 +105,9 @@ export default function MapaArea() {
     <div className="App">
       <Header />
       {msg}
-      <input type="date" id="date" className='date underline'  onChange={search} />
+      <input type="date" id="date" className='date mt-2 ml-36'  onChange={search} />
 
-      <Accordion>
+      <Accordion className='d-flex w-4/5 ml-auto mr-auto flex-wrap mt-1'>
      {city}
      </Accordion>
     </div>

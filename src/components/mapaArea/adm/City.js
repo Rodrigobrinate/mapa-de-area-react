@@ -1,9 +1,9 @@
 
 import {Accordion, ListGroup, Alert, Modal,Button} from 'react-bootstrap';
-import api from '../api';
+import api from '../../api';
 import { useState, useContext } from 'react';
 import Colaborator from './Colaborator'
-import MapContext from '../../pages/mapa_area/MapContext';
+import MapContext from '../../../pages/mapa_area/MapContext';
 
 
 export default function City(props){
@@ -91,15 +91,49 @@ export default function City(props){
     return (
 
     data.map((subArray) => 
-          <Accordion.Item eventKey={subArray.id} xl={4}>
+          <Accordion.Item eventKey={subArray.id} xl={4} className="w-72 border">
             <Accordion.Header>{subArray.name}</Accordion.Header>
             <Accordion.Body>
               <ListGroup.Item>
                  <Colaborator data={subArray} />
-                 
+                 <button onClick={()=> {handleShow();setCityId(subArray.id) }} className='w-full bg-green-700  mt-3 rounded-md'>+</button>
               </ListGroup.Item>
               </Accordion.Body>
-             
+              <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>adicionar Técnico</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <span className='mt-3' >selecione o técnico</span>
+          <input type="text" id="colaborator" value={input} onChange={(e) => {searchColaborator(e)}} />
+          <input type="hidden" id='colaborator_id' />
+          <ul id="listc" className='border list d-block'>
+             {colaborator.map((item) =>         
+            <li key={item.id} className='list-none p-1 hover:bg-gray-400' onClick={(e) => {select(e, item.id)}} >{item.name}</li>
+            )}
+            
+          </ul>
+          <span className='mt-3' >selecione o período</span>
+          <select id='time'  className='p-2 rounded-sm' onChange={(e)=>{setTime(e.target.value)}}>
+            <option value="1">dia</option>
+            <option value="2">noite</option>
+          </select>
+          <span  className='mt-3' >selecione o tipo de serviço</span>
+          <select id='type'  className='p-2 rounded-sm' onChange={(e)=>{setType(e.target.value)}}>
+            <option value="1">manutenção</option>
+            <option value="2">instalação</option>
+            
+          </select>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Fechar
+          </Button>
+          <Button variant="primary" onClick={(e)=> {createColaborator(e)}}>
+            Adicionar
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </Accordion.Item>
 
       

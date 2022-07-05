@@ -1,9 +1,9 @@
-import './styles/Create.css'
+//import './styles/Create.css'
 import React,{ useState, useEffect,useRef } from 'react';
 import { Link} from 'react-router-dom';
-import Header from '../components/Header';
+import Header from '../../components/Header';
 import { Editor } from '@tinymce/tinymce-react';
-import api from "../components/api";
+import api from "../../components/api";
 import {Form, Button } from 'react-bootstrap'
 
 function Create() {

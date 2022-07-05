@@ -1,8 +1,8 @@
-import './styles/Login.css'
+//import './styles/Login.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Header from '../components/Header';
-import api from '../components/api';
+import Header from '../../components/Header';
+import api from '../../components/api';
 import {Form, Alert} from 'react-bootstrap';
 
 function Register() {

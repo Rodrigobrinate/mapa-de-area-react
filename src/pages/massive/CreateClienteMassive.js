@@ -1,11 +1,11 @@
-import './styles/Create.css'
+import '../styles/Create.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Alerts from '../components/Alert';
+//import Alerts from '../../components/Alert';
 
 import { Link} from 'react-router-dom';
-import Header from '../components/Header';
-import api from "../components/api";
+import Header from '../../components/Header';
+import api from "../../components/api";
 import { Form,Button, Alert } from 'react-bootstrap';
 
 function CreateClienteMassive() {

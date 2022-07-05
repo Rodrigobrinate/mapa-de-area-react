@@ -24,50 +24,60 @@ export default function Cofee() {
 
          case 1:
             setUserCoffee1(response.data.map((item) => {
+              console.log(item.user.user_in_work[0].time )
+              if(item.user.user_in_work[0].time == 1){
+
+              
               const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
             return (
                 <ListGroup.Item className="w-full" key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
-            )
+            )}
            }))
           break;
           case 2:
             setUserCoffee2(response.data.map((item) => {
+              if(item.user.user_in_work[0].time == 2){
               const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
             return (
                 <ListGroup.Item className="w-full" key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
             )
+              }
            }))
           break;
           case 3:
             setUserCoffee3(response.data.map((item) => {
+               if(item.user.user_in_work[0].time == 3){
               const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
             return (
                 <ListGroup.Item className="w-full" key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
-            )
+            )}
            }))
           break;
           case 4:
             setUserCoffee4(response.data.map((item) => {
+               if(item.user.user_in_work[0].time == 4){
               const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
             return (
                 <ListGroup.Item className="w-full" key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
-            )
+            )}
            }))
           break;
           case 5:
             setUserCoffee5(response.data.map((item) => {
+               if(item.user.user_in_work[0].time == 5){
               const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
             return (
                 <ListGroup.Item className="w-full" key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
-            )
+            )}
            }))
           break;
           case 6:
             setUserCoffee6(response.data.map((item) => {
+               if(item.user.user_in_work[0].time == 6){
               const now = (((new Date().getTime() - new Date(item.created_at).getTime()) * 100)/600000).toFixed(0)
             return (
                 <ListGroup.Item className="w-full" key={item.id}>{item.user.name}<ProgressBar now={now} label={`${now}%`} /></ListGroup.Item>
-            )
+            )}
            }))
           break;
           }

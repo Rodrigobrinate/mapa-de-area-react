@@ -1,10 +1,10 @@
-import './styles/Create.css'
+//import './styles/Create.css'
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link} from 'react-router-dom';
-import Header from '../components/Header';
-import api from "../components/api";
+import Header from '../../components/Header';
+import api from "../../components/api";
 import { Button, Form, Alert } from 'react-bootstrap';
 
 

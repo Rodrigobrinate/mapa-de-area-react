@@ -1,8 +1,8 @@
 
 import { Table } from 'react-bootstrap'
-import api from '../components/api'
+import api from '../../../components/api'
 import { useEffect, useState } from 'react'
-import Header from '../components/Header'
+import Header from '../../../components/Header'
 
 
 export default function EscalaCall() {
@@ -26,8 +26,8 @@ export default function EscalaCall() {
 
     }
     function start(id) {
-
-        api.get('/escalaSuport/' + id, headers).then((response) =>
+        createListDay(id)
+        api.get('/escala/' + id, headers).then((response) =>
 
             setData(
                 response.data.map((item) => {
@@ -38,39 +38,39 @@ export default function EscalaCall() {
                             {item.user_in_work.map((subitem) => {
                                 if (subitem.time == 1) {
                                     return <td>
-                                        <button className=' w-36 text-xs bg-purple-400 py-3 px-4' >
-                                            <p className='bg-purple-400' value={subitem.time}>08:00 - 18:00</p>
+                                        <button className=' w-36 text-xs bg-red-700 py-3 px-4' >
+                                            <p className='bg-red-700' value={subitem.time}>07:00 as 13:20</p>
                                         </button>
                                     </td>
                                 }
                                 else if (subitem.time == 2) {
-                                    return <td><button className=' w-36 text-xs bg-red-300 py-3 px-4' >
+                                    return <td><button className=' w-36 text-xs bg-red-500 py-3 px-4' >
 
-                                        <p className='bg-red-300 ' value={subitem.time} >09:00 - 18:00</p>
+                                        <p className='bg-red-500 ' value={subitem.time} >07:30 as 13:30</p>
 
                                     </button></td>
                                 }
                                 else if (subitem.time == 3) {
-                                    return <td><button className=' w-36 text-xs bg-blue-900 py-3 px-4' >
-                                        <p className='bg-blue-900' value={subitem.time}>08:00 - 17:00</p>
+                                    return <td><button className=' w-36 text-xs bg-orange-600 py-3 px-4' >
+                                        <p className='bg-orange-600' value={subitem.time}>08:00 - 14:30</p>
                                     </button></td>
                                 }
                                 else if (subitem.time == 4) {
-                                    return <td><button className=' w-36 text-xs bg-green-600 py-3 px-4' >
+                                    return <td><button className=' w-36 text-xs bg-yellow-200 py-3 px-4' >
 
-                                        <p className='bg-green-600' value={subitem.time}>15:00 - 23:00</p>
+                                        <p className='bg-yellow-200' value={subitem.time}>12:00 - 18:30</p>
 
                                     </button></td>
                                 }
                                 else if (subitem.time == 5) {
-                                    return <td><button className=' w-36 text-xs bg-gray-300 py-3 px-4' >
+                                    return <td><button className=' w-36 text-xs bg-green-300 py-3 px-4' >
 
-                                        <p className='bg-gray-300' value={subitem.time}>licença</p>
+                                        <p className='bg-green-300' value={subitem.time}>14:00 - 20:30</p>
                                     </button></td>
                                 }
                                 else if (subitem.time == 6) {
-                                    return <td><button className=' w-36 text-xs bg-green-500 py-3 px-4' >
-                                        <p className='bg-green-500' value={subitem.time}>16:30 - 23:00</p>
+                                    return <td><button className=' w-36 text-xs bg-blue-500 py-3 px-4' >
+                                        <p className='bg-blue-500' value={subitem.time}>16:30 - 23:00</p>
                                     </button></td>
                                 }
                                 else if (subitem.time == 7) {
@@ -105,7 +105,7 @@ export default function EscalaCall() {
         switch (new Date().getMonth() + 1) {
             case 1:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option selected value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -123,7 +123,7 @@ export default function EscalaCall() {
                 break;
             case 2:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option selected value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -141,7 +141,7 @@ export default function EscalaCall() {
                 break;
             case 3:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option selected value={3}>março</option>
@@ -159,7 +159,7 @@ export default function EscalaCall() {
                 break;
             case 4:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -177,7 +177,7 @@ export default function EscalaCall() {
                 break;
             case 5:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -195,7 +195,7 @@ export default function EscalaCall() {
                 break;
             case 6:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -213,7 +213,7 @@ export default function EscalaCall() {
                 break;
             case 7:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -231,7 +231,7 @@ export default function EscalaCall() {
                 break;
             case 8:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -249,7 +249,7 @@ export default function EscalaCall() {
                 break;
             case 9:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -267,7 +267,7 @@ export default function EscalaCall() {
                 break;
             case 10:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -285,7 +285,7 @@ export default function EscalaCall() {
                 break;
             case 11:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -303,7 +303,7 @@ export default function EscalaCall() {
                 break;
             case 12:
                 setMonth(
-                    <select id='month' onChange={(e) => changeMonth(e)}>
+                    <select id='month' className="w-48" onChange={(e) => changeMonth(e)}>
                         <option value={1}>Janeiro</option>
                         <option value={2}>fevereiro</option>
                         <option value={3}>março</option>
@@ -322,22 +322,27 @@ export default function EscalaCall() {
         }
     }, [])
 
-    const p = {
+    async function createListDay(month){
 
-        weekday: ('long'),
 
-    }
-    const locale = 'pt-br'
-    var a = []
-    for (var i = 1; i < 32; i++) {
-        a.push(<th className='d-flex w-36 justify-center items-center' >
-            <p className='d-flex'>{i}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            <p className='d-flex text-xs justify-center align-middle'>  {new Date('2022-6-' + i).toLocaleDateString(locale, p)}</p></th>)
-    }
-
-    setTimeout(() => {
-        setListday(a)
-    }, 500)
+ 
+        const option = {
+          
+                weekday: ('long'), 
+          
+        }
+        const locale = 'pt-br'
+        var  a   = await []
+        for(var i = 1; i < 32; i++){
+            await a.push(<th className='d-flex justify-between w-full' ><p className='d-flex'>{i}</p><p className='d-flex'>  {new Date('2022-'+month+'-'+i).toLocaleDateString(locale, option)}</p></th>)
+        }
+        
+        //setTimeout(()=>{
+           await setListday(a)
+        //},500)
+        
+        
+        }
 
 
 
@@ -345,11 +350,11 @@ export default function EscalaCall() {
     return (
         <div>
             <Header />
-            <h1 className='w-max ml-auto mr-auto'>Escala call suporte</h1>
+            <h1 className='w-max ml-auto mr-auto'>Escala call center</h1>
             <Table striped bordered hover className='overflow-hidden w-4/5'>
                 <thead>
                     <tr className='d-flex'>
-                        <th className='w-48'>
+                        <th className='w-48 p-0'>
                             {month}
                         </th>
                         {listday}

@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {Card, ListGroup } from 'react-bootstrap';
-import './styles/Massive.css'
-import Header from '../components/Header';
-import api from "../components/api";
+import '../styles/Massive.css'
+import Header from '../../components/Header';
+import api from "../../components/api";
 import { DocumentRemoveIcon } from '@heroicons/react/solid';
 
 function Massive() {
