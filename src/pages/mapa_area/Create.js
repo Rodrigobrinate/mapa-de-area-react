@@ -18,7 +18,7 @@ console.log('teste')
 
 
 if (localStorage.getItem('token') === null) {
-    window.location.href = '/login'
+    window.location.href = '/login' 
     }
     
 const headers = {
