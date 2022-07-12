@@ -6,10 +6,13 @@
 3. instale o [git](https://git-scm.com/downloads)
 4. abra o terminal vá até a pasta que deseja inserir o projeto e digite
    ```git clone https://github.com/Rodrigobrinate/mapa-de-area-react ```
+   <br />
    4.1 em seguida
    ``` git clone https://github.com/Rodrigobrinate/mapa-de-area ```
+   <br />
    4.2 em seguida 
     ```$ cd mapa-de-area```
+    <br />
    4.3 agora vamos digitar o comando para subir o projeto
       ```$ docker-compose up```
  5. em seguida como nosso projeto foi construido com o ORM prisma devemos utiliza-lo para criar o banco de dados
