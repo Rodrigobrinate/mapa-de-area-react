@@ -15,7 +15,8 @@
     <br />
    4.3 agora vamos digitar o comando para subir o projeto
       ```$ docker-compose up```
- 5. em seguida como nosso projeto foi construido com o ORM prisma devemos utiliza-lo para criar o banco de dados
+ 5. em seguida como nosso projeto foi construido com o ORM prisma devemos utiliza-lo para criar o banco de dado
+ 
    ```$ dokcer ps```
  
    ```$ docker exec -it "id do container" /bin/bash```
