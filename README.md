@@ -17,8 +17,11 @@
       ```$ docker-compose up```
  5. em seguida como nosso projeto foi construido com o ORM prisma devemos utiliza-lo para criar o banco de dados
    ```$ dokcer ps```
+   <br />
    ```$ docker exec -it "id do container" /bin/bash```
+   <br />
    ```$ cd mapa-de-area```
+   <br />
    ```$ npx prisma db push```
    
    tudo pronto!! o sistema já está rodando o banco de dados na porta 3306 o node na porta 6868 e o react na porta 3001
