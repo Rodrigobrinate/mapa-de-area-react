@@ -37,7 +37,8 @@ email.addEventListener('keyup', function(e) {
 
   }, []);
     
-    function login(item){
+    function login(e){
+      e.preventDefault()
         api.post("/login",{
             email: document.getElementById('email').value,
             password: document.getElementById('password').value,
@@ -54,6 +55,9 @@ email.addEventListener('keyup', function(e) {
           return setMsg(<Alert  variant="danger" >{response.data.msg}</Alert>)
           }
             
+        }).catch((err)=> {
+          setMsg(<Alert  variant="danger" >{err.response.data.msg}</Alert>)
+          
         })
     }
 
@@ -64,19 +68,19 @@ email.addEventListener('keyup', function(e) {
 <Header />
     {msg}
 
-        <Form >
+        <Form onSubmit={(e)=> {login(e)}} >
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Email </Form.Label>
-    <Form.Control type="email" id="email" placeholder="Enter email" />
+    <Form.Control type="email" id="email" required placeholder="Enter email" />
     
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>senha</Form.Label>
-    <Form.Control type="password" id='password' placeholder="Password" />
+    <Form.Control type="password" required id='password' placeholder="Password" />
   </Form.Group>
   
-  <Button onClick={login} variant="primary" type="button">
+  <Button  variant="primary" type="submit">
     Entrar
   </Button>
  

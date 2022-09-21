@@ -27,7 +27,7 @@ export default function City(props){
           }
       }
       const { date, getMap, setMsg, closeMsg } = useContext(MapContext)
-    console.log(data)
+   
 
     function searchColaborator(e) {
       if (e.target.value.lenght <1){
@@ -91,7 +91,7 @@ export default function City(props){
     return (
 
     data.map((subArray) => 
-          <Accordion.Item eventKey={subArray.id} xl={4}>
+          <Accordion.Item eventKey={subArray.id} xl={4} className="w-72 border">
             <Accordion.Header>{subArray.name}</Accordion.Header>
             <Accordion.Body>
               <ListGroup.Item>

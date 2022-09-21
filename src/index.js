@@ -17,6 +17,7 @@ import EscalaCall from './pages/Escala/call/EscalaCall';
 import AdmEscalaSuport from './pages/Adm/EscalaSupot';
 import CreateEscala from './pages/Adm/CrateEscala';
 import EscalaSuport from './pages/Escala/suport/EscalaSuport';
+import AdmUsers from './pages/Adm/users/AdmUsers';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
@@ -24,6 +25,7 @@ import {
   Route,
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -45,6 +47,8 @@ root.render(
       <Route path="/adm/escala/suport" element={<AdmEscalaSuport />}></Route>
       <Route path="/adm/create/escala" element={<CreateEscala />}></Route>
       <Route path="/escala/suport" element={<EscalaSuport />}></Route>
+      <Route path="/adm/users" element={<AdmUsers />}></Route>
+      
      
     </Routes>
   </BrowserRouter>

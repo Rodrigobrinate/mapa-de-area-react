@@ -12,7 +12,6 @@ useEffect(() => {
 
    let name = document.getElementById('name');
   let email = document.getElementById('email')
-  let department = document.getElementById('department')
   let password = document.getElementById('password')
    name.addEventListener('keyup', function(e) { 
      console.log(e);
@@ -26,7 +25,7 @@ useEffect(() => {
      }) 
 
      email.addEventListener('keyup', function(e) { 
-        console.log(e);
+      
       
           if (e.key === 'Enter') {
               e.preventDefault();
@@ -35,16 +34,7 @@ useEffect(() => {
               document.getElementById('email').focus();
           }  
         }) 
-        department.addEventListener('keyup', function(e) { 
-            console.log(e);
-          
-              if (e.key === 'Enter') {
-                  e.preventDefault();
-                  document.getElementById('password').focus();
-              } else {
-                  document.getElementById('department').focus();
-              }  
-            }) 
+         
           
             password.addEventListener('keyup', function(e) { 
               console.log(e);
@@ -60,17 +50,21 @@ useEffect(() => {
     }, []);
 
     
-    function register(item){
+    function register(e){
+      e.preventDefault()
         api.post("/register",{
             email: document.getElementById('email').value,
             password: document.getElementById('password').value,
             name: document.getElementById('name').value,
-            department: document.getElementById('department').value,
         }).then((response) => {
             response.data.st === 1 ?
             window.location.href = '/login' :
-             setMsg(<Alert  variant="danger" >{response.data.msg}</Alert>)}
-        )
+             setMsg(<Alert  variant="sucess" >{response.data.msg}</Alert>)
+        }).catch((err) => {
+          console.log(err)
+          setMsg(<Alert  variant="danger" >{err.response.data.msg}</Alert>)
+        })
+        
     }
 
     
@@ -78,21 +72,15 @@ useEffect(() => {
     <div className="AppCreate">
         <Header />
         {msg}
-        <form className='register'  >
+        <form className='register'  onSubmit={(e) => {register(e)}}>
         <span>nome</span>
             <Form.Control type="text" required id="name" />
             <span>email</span>
-            <Form.Control type="text" required id="email" />
-            <span>selecione o nivel de permissão do usuário</span>
-            <Form.Select required id='department'>
-                <option value={0}>selecione setor</option>
-                <option value="1">Call center</option>
-                <option value="2">Técnico</option>
-            </Form.Select>
+            <Form.Control type="email" required id="email" />
             <span>Senha</span>
             <Form.Control required type="password" id="password" />
-            <button onClick={register} className="submit" type="button">Entrar</button>
-            <a href="/login center" >Já possuo uma conta</a>
+            <button  className="submit" type="submit">Entrar</button>
+            <a href="/login" >Já possuo uma conta</a>
         </form>
     </div>
   );

@@ -1,7 +1,7 @@
 
 import {Accordion, ListGroup, Alert, Modal,Button} from 'react-bootstrap';
 import api from '../../api';
-import { useState, useContext } from 'react';
+import { useState, useContext, Suspense } from 'react';
 import Colaborator from './Colaborator'
 import MapContext from '../../../pages/mapa_area/MapContext';
 
@@ -17,6 +17,7 @@ export default function City(props){
     const [cityId, setCityId] = useState(0)
     const [type, setType] = useState(1)
     const [time, setTime] = useState(1)
+    const [date, setDate] = useState(new Date().toDateString('yyyy-mm-dd'))
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -26,8 +27,7 @@ export default function City(props){
           'x-access-token': localStorage.getItem('token')
           }
       }
-      const { date, getMap, setMsg, closeMsg } = useContext(MapContext)
-    console.log(data)
+      const { socket, msg, search, citieslist,  getMap, setMsg, closeMsg } = useContext(MapContext)
 
     function searchColaborator(e) {
       if (e.target.value.lenght <1){
@@ -41,10 +41,11 @@ export default function City(props){
     }
 
     function select(e,id) {
-      
+      console.log(e, id)
      console.log(e.target.outerText)
      document.getElementById('colaborator').outerText = e.target.outerText
-     document.getElementById('colaborator').value = id
+     //document.getElementById('colaborator').value = id
+     
      setUserId(id)
       
 //console.log(id)
@@ -53,50 +54,47 @@ export default function City(props){
     }
 
     function createColaborator(e){
-      console.log(userId, cityId)
+        
       api.post("/create ",{
         city: cityId,
         colaborator:  userId,
         period: time,
         type: type,
-        date: date
+        date:  date
 
       }, headers ).then((response) => {
+         socket.emit('new', cityId)
+        
         handleClose();
         setTime(1)
         setType(1)
-        api.get("/",headers).then((response) => getMap(response.data) )
+        
+        
+        
+        //api.get("/",headers).then((response) => getMap(response.data) )
     
-      }).catch((response)=> 
-       setMsg(<Alert  variant="danger" className='absolute w-96 d-flex justify-between' style={{zIndex: '10000'}} >{response.response.data.msg}
-       <button type="button" className="close -mt-8" data-dismiss="alert" onClick={closeMsg} aria-label="Close">
+      }).catch((response)=> {
+      closeMsg()
+       setMsg(<Alert  variant="danger" className=' w-96 d-flex justify-between'  >{response.response.data.msg}
+       <button type="button" className="close -mt-8 absolute z-20" data-dismiss="alert" onClick={closeMsg} aria-label="Close">
         <span aria-hidden="true">&times;</span>
        </button></Alert>)
       
-        )
+      })
     }
 
-    function deleteColeborator(id){
-        api.post("/delete ",{ 
-          id: id,
-        }, headers ).then((response) => {
-          if (response.data.st === 1) {
-            setMsg(<Alert  variant="success" >{response.data.msg}</Alert>)
-          api.get("/",headers).then((response) => console.log(response) )
-          }else {
-            setMsg(<Alert  variant="danger" >{response.data.msg}</Alert>)
-          }
-        })
-      }
+
     return (
 
-    data.map((subArray) => 
+    data.map((subArray, i) => {
+      subArray.user_in_city.sort((a, b) => new Date(a.date) - new Date(b.date));
+    return (
           <Accordion.Item eventKey={subArray.id} xl={4} className="w-72 border">
             <Accordion.Header>{subArray.name}</Accordion.Header>
             <Accordion.Body>
               <ListGroup.Item>
-                 <Colaborator data={subArray} />
-                 <button onClick={()=> {handleShow();setCityId(subArray.id) }} className='w-full bg-green-700  mt-3 rounded-md'>+</button>
+                 <Colaborator data={subArray} cities={data} current={i} />
+                 <button onClick={()=> {handleShow();setCityId(subArray.id) }} id="add" className='w-full bg-green-700  mt-3 rounded-md'>+</button>
               </ListGroup.Item>
               </Accordion.Body>
               <Modal show={show} onHide={handleClose}>
@@ -104,8 +102,9 @@ export default function City(props){
           <Modal.Title>adicionar Técnico</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          {msg}
           <span className='mt-3' >selecione o técnico</span>
-          <input type="text" id="colaborator" value={input} onChange={(e) => {searchColaborator(e)}} />
+          <input type="text" className='w-full' id="colaborator" value={input} onChange={(e) => {searchColaborator(e)}} />
           <input type="hidden" id='colaborator_id' />
           <ul id="listc" className='border list d-block'>
              {colaborator.map((item) =>         
@@ -114,14 +113,17 @@ export default function City(props){
             
           </ul>
           <span className='mt-3' >selecione o período</span>
-          <select id='time'  className='p-2 rounded-sm' onChange={(e)=>{setTime(e.target.value)}}>
-            <option value="1">dia</option>
-            <option value="2">noite</option>
+          <select id='time'  className='p-2 rounded-sm' onClick={(e)=>{setTime(e.target.value)}} onChange={(e)=>{setTime(e.target.value)}}>
+            {type == 2 ?  <option value="1">dia</option> : <> <option value="1">dia</option><option value="2">noite</option></>}
+           
           </select>
+          <span className='mt-3'>selecione a data</span>
+          <input type="date" id='date' onChange={(e) => {setDate(e.target.value)}} className="mt-2" />
           <span  className='mt-3' >selecione o tipo de serviço</span>
-          <select id='type'  className='p-2 rounded-sm' onChange={(e)=>{setType(e.target.value)}}>
-            <option value="1">manutenção</option>
-            <option value="2">instalação</option>
+          <select id='type'  className='p-2 rounded-sm'  onClick={(e)=>{setType(e.target.value)}} onChange={(e)=>{setType(e.target.value)}}>
+            {time == 2 ?  <option value="1">manutenção</option> : <><option value="1">manutenção</option><option value="2">instalação</option></>}
+            
+            
             
           </select>
         </Modal.Body>
@@ -129,7 +131,7 @@ export default function City(props){
           <Button variant="secondary" onClick={handleClose}>
             Fechar
           </Button>
-          <Button variant="primary" onClick={(e)=> {createColaborator(e)}}>
+          <Button variant="primary" id="adic" onClick={(e)=> {createColaborator(e)}}>
             Adicionar
           </Button>
         </Modal.Footer>
@@ -139,6 +141,6 @@ export default function City(props){
       
    
 
-    )
+    )})
     )
 }
