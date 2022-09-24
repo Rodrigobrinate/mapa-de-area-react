@@ -49,7 +49,7 @@ email.addEventListener('keyup', function(e) {
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('name', response.data.name)
             localStorage.setItem('id', response.data.id)
-            localStorage.setItem('department', response.data.department)
+            localStorage.setItem('department', response.data.department.id)
             return window.location.href = '/cofee'
           }else{
           return setMsg(<Alert  variant="danger" >{response.data.msg}</Alert>)
