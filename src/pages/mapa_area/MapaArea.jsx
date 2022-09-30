@@ -24,7 +24,7 @@ export default function MapaArea() {
 
 
   function getMap(data) {
-    if (localStorage.getItem('department') >= 3) {
+    if (localStorage.getItem('department') >= 14) {
       setCity(
         <AdmCity data={data} />
       )

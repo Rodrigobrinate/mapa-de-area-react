@@ -50,7 +50,7 @@ email.addEventListener('keyup', function(e) {
             localStorage.setItem('email', response.data.response.email)
             localStorage.setItem('id', response.data.response.id)
             localStorage.setItem('department', response.data.response.department.id)
-            return window.location.href = '/cofee'
+            return window.location.href = '/Mapa/area'
             
         }).catch((err)=> {
           setMsg(<Alert  variant="danger" >{err.response.data.msg}</Alert>)
