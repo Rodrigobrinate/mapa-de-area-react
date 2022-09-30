@@ -18,6 +18,7 @@ import AdmEscalaSuport from './pages/Adm/EscalaSupot';
 import CreateEscala from './pages/Adm/CrateEscala';
 import EscalaSuport from './pages/Escala/suport/EscalaSuport';
 import AdmUsers from './pages/Adm/users/AdmUsers';
+import Profile from './pages/user/Profile';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
@@ -48,6 +49,7 @@ root.render(
       <Route path="/adm/create/escala" element={<CreateEscala />}></Route>
       <Route path="/escala/suport" element={<EscalaSuport />}></Route>
       <Route path="/adm/users" element={<AdmUsers />}></Route>
+      <Route path="/user/profile" element={<Profile />}></Route>
       
      
     </Routes>

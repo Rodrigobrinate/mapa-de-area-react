@@ -43,17 +43,14 @@ email.addEventListener('keyup', function(e) {
             email: document.getElementById('email').value,
             password: document.getElementById('password').value,
         }).then((response) => {
-          console.log(response.data)
-          if (response.data.st === 1) {  
+          
 
-            localStorage.setItem('token', response.data.token)
-            localStorage.setItem('name', response.data.name)
-            localStorage.setItem('id', response.data.id)
-            localStorage.setItem('department', response.data.department.id)
+            localStorage.setItem('token', response.data.response.token)
+            localStorage.setItem('name', response.data.response.name)
+            localStorage.setItem('email', response.data.response.email)
+            localStorage.setItem('id', response.data.response.id)
+            localStorage.setItem('department', response.data.response.department.id)
             return window.location.href = '/cofee'
-          }else{
-          return setMsg(<Alert  variant="danger" >{response.data.msg}</Alert>)
-          }
             
         }).catch((err)=> {
           setMsg(<Alert  variant="danger" >{err.response.data.msg}</Alert>)
